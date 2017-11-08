@@ -32,9 +32,13 @@ export function* getSingleArticleData(action) {
   try {
     console.log('Attempting to fetch ARTICLE data...');
     console.log('action being run...: ', action)
-    const data = yield call(axios.get, getSingleArticleAPI(action.id))
+    const data = yield call(axios.get, getSingleArticleAPI(action.payload.id))
     console.log("RESPONSE FROM SINGLE ARTICLE API: ", data);
-    yield put(receiveArticles(data.data))
+    console.log(data.data)
+    if (data) {
+      yield put(receiveArticles(data.data))
+      action.payload.callback();
+    }
 
   } catch (e) {
     console.log('Failed to retrieve data from api')

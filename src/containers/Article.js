@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import moment from 'moment'
 
 import { requestSingleArticle } from '../reducers/articles/actions'
@@ -7,7 +8,13 @@ import { requestSingleArticle } from '../reducers/articles/actions'
 class Article extends Component {
 
   handleClick = () => {
-    this.props.requestSingleArticle(this.props.id)
+    this.props.requestSingleArticle({
+      id: this.props.id,
+      callback: () => {
+        console.log('callback called!');
+        this.props.history.push(`/article/${this.props.id}`)
+      }
+    })
   }
 
   render () {
@@ -41,9 +48,10 @@ class Article extends Component {
 
 }
 
-export default connect(
-  (state) => ({
-    articles: state.articles
-  }),
-  { requestSingleArticle }
-)(Article)
+const mapStateToProps = state => ({
+  articles: state.articles
+})
+
+const mapDispatchToProps = dispatch => bindActionCreators({ requestSingleArticle }, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Article)

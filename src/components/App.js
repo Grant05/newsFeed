@@ -14,9 +14,9 @@ class App extends Component {
         <Header />
         <main>
           <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/topics" component={Topics} />
-            <Route path="/article/:id" component={ArticlePage} />
+            <Route exact path="/" render={props => <Home {...props} />} />
+            <Route exact path="/topics" render={props => <Topics {...props} />} />
+            <Route path="/article/:id" render={props => <ArticlePage {...props} />} />
           </Switch>
         </main>
       </div>

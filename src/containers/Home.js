@@ -10,6 +10,8 @@ class Home extends Component {
 //Request then render articles on Home page
   componentDidMount() {
     this.props.requestArticles()
+    console.log('Home props: ', this.props)
+    console.log('history home: ', this.props.history)
   }
 
   render () {
@@ -33,7 +35,7 @@ class Home extends Component {
       return (
         <div className="home">
           {filteredArticles.map((data) =>
-            <Article key={data.id} {...data} />
+            <Article key={data.id} {...data} history={this.props.history} />
           )}
         </div>
       )
@@ -41,7 +43,7 @@ class Home extends Component {
       return (
         <div className="home">
           {articles.map((data) =>
-            <Article key={data.id} {...data} />
+            <Article key={data.id} {...data} history={this.props.history}/>
           )}
         </div>
       )
