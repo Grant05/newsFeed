@@ -1,4 +1,4 @@
-import { RECEIVE_ARTICLES } from './actions'
+import { RECEIVE_ARTICLES } from './actions';
 
 const articlesReducer = (state = [], { type, data }) => {
   switch (type) {
@@ -6,7 +6,7 @@ const articlesReducer = (state = [], { type, data }) => {
       return data.data;
     default:
       return state;
-  };
+  }
 };
 
-export default articlesReducer
+export default articlesReducer;

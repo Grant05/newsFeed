@@ -1,28 +1,27 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import moment from 'moment'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import moment from 'moment';
 
-import { requestSingleArticle } from '../reducers/articles/actions'
+import { requestSingleArticle } from '../reducers/articles/actions';
 
 class Article extends Component {
-
   handleClick = () => {
     this.props.requestSingleArticle({
       id: this.props.id,
       callback: () => {
         console.log('callback called!');
-        this.props.history.push(`/article/${this.props.id}`)
-      }
-    })
+        this.props.history.push(`/article/${this.props.id}`);
+      },
+    });
   }
 
-  render () {
+  render() {
     let picture;
     if (this.props.media.length) {
-      picture = this.props.media[0].url
+      picture = this.props.media[0].url;
     } else {
-      picture="#"
+      picture = '#';
     }
     return (
       <div className="main-article">
@@ -36,22 +35,21 @@ class Article extends Component {
         <p className="article-con" onClick={this.handleClick}>Read More</p>
         <hr />
         <div className="topics-container">
-          {this.props.topics.map((topic) => <button type="button" className='btn topic' key={topic.id}>{topic.name}</button>)}
+          {this.props.topics.map(topic => <button type="button" className="btn topic" key={topic.id}>{topic.name}</button>)}
         </div>
         <hr />
-        <button type="button" className='btn like'><i className="fa fa-thumbs-o-up" aria-hidden="true"></i> {this.props.likesCount}</button>
-        <button type="button" className='btn comment'><i className="fa fa-comment-o" aria-hidden="true"></i> Comment</button>
-        <button type="button" className='btn save'><i className="fa fa-bookmark-o" aria-hidden="true"></i> Follow</button>
+        <button type="button" className="btn like"><i className="fa fa-thumbs-o-up" aria-hidden="true" /> {this.props.likesCount}</button>
+        <button type="button" className="btn comment"><i className="fa fa-comment-o" aria-hidden="true" /> Comment</button>
+        <button type="button" className="btn save"><i className="fa fa-bookmark-o" aria-hidden="true" /> Follow</button>
       </div>
-    )
+    );
   }
-
 }
 
 const mapStateToProps = state => ({
-  articles: state.articles
-})
+  articles: state.articles,
+});
 
-const mapDispatchToProps = dispatch => bindActionCreators({ requestSingleArticle }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ requestSingleArticle }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(Article)
+export default connect(mapStateToProps, mapDispatchToProps)(Article);

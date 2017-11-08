@@ -1,17 +1,17 @@
 
 
-const SUBSCRIBE_TOPIC = "SUBSCRIBE_TOPIC"
-const UNSUB_TOPIC = "UNSUB_TOPIC"
+const SUBSCRIBE_TOPIC = 'SUBSCRIBE_TOPIC';
+const UNSUB_TOPIC = 'UNSUB_TOPIC';
 
-export const subscribeTopic = (data) => ({
+export const subscribeTopic = data => ({
   type: SUBSCRIBE_TOPIC,
   data,
-})
+});
 
-export const unsubTopic = (data) => ({
+export const unsubTopic = data => ({
   type: UNSUB_TOPIC,
   data,
-})
+});
 
 const subReducer = (state = [], { type, data }) => {
   switch (type) {
@@ -22,14 +22,14 @@ const subReducer = (state = [], { type, data }) => {
       const copyState = state.slice();
       copyState.forEach((topic, i) => {
         if (topic.id === data.id) {
-          copyState.splice(i, 1)
+          copyState.splice(i, 1);
         }
-      })
-      return copyState
+      });
+      return copyState;
     }
     default:
       return state;
-  };
+  }
 };
 
-export default subReducer
+export default subReducer;

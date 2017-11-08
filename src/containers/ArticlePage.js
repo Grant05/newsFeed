@@ -1,14 +1,13 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import moment from 'moment'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import moment from 'moment';
 
 class ArticlePage extends Component {
-
-  render () {
-    const { articles } = this.props
-    const article = articles[0]
-    const body = article.body.replace(/<p>|<\/p>/g, '')
-    console.log('single article: ', article)
+  render() {
+    const { articles } = this.props;
+    const article = articles[0];
+    const body = article.body.replace(/<p>|<\/p>/g, '');
+    console.log('single article: ', article);
     return (
       <div className="single-article">
         <div className="main-article">
@@ -22,13 +21,10 @@ class ArticlePage extends Component {
           <a href={article.url}>Source</a>
         </div>
       </div>
-    )
+    );
   }
-
 }
 
-export default connect(
-  (state) => ({
-    articles: state.articles
-  })
-)(ArticlePage)
+export default connect(state => ({
+  articles: state.articles,
+}))(ArticlePage);

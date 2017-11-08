@@ -1,4 +1,4 @@
-import { RECEIVE_TOPICS } from './actions'
+import { RECEIVE_TOPICS } from './actions';
 
 const topicsReducer = (state = [], { type, data }) => {
   switch (type) {
@@ -6,7 +6,7 @@ const topicsReducer = (state = [], { type, data }) => {
       return data.data;
     default:
       return state;
-  };
+  }
 };
 
-export default topicsReducer
+export default topicsReducer;
