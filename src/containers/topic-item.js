@@ -21,7 +21,7 @@ class Topic extends Component {
 
   subscribeOnClick = () => {
     this.setState({
-      isSubscribt sted: true
+      isSubscribed: true
     })
     this.props.subscribeTopic(this.props.data)
   }
